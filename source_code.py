@@ -498,7 +498,6 @@ class Ui_MainWindow(object):
     def calculateAvailable(self):
 
         try:
-
             # check if all values are positive numbers only in the resources table, max table and allocation table
             for i in range(self.resources):
                 if not self.resTableWidget.item(0, i).text().isnumeric():
