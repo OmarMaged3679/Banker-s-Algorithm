@@ -21,9 +21,9 @@ Follow these steps:
 
 3. To install the required library, run the following command in the terminal:
 
-  ```shell
-  pip install pyqt5
-  ```
+    ```shell
+    pip install pyqt5
+    ```
 
 ## Usage
 
