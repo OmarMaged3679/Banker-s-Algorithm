@@ -32,31 +32,38 @@ Follow these steps:
 
 ## Usage
    
- 1. - You start first by filling in the data for the Number of Processes and Number of Resources:
+ 1. -Begin by entering the values for the **Number of Processes** and **Number of Resources** fields:
 
     ![Main GUI](/images/image2.png "Main GUI")
     
- 2. - Click the Generate Input Fields to fill the tables with input fields. If you want to load an example, press the Load Example button to fill in the tables with data:
+ 2. To set up the tables with input fields, follow these steps:
+       - Click the **Generate Input Fields** button. This will create tables where you can enter your own data.
+
+       Alternatively, you can load an example by:
+       - Clicking the **Load Example** button. This will automatically fill the tables with pre-defined data, providing a ready-to-use example.
 
     ![Main GUI](/images/image3.png "Main GUI")
 
- 3. - After filling in the Total Resources, Current Allocation, and Maximum Need tables press the Calculate Avaialbe button to calulate and fill in the Avaiable Resources: 
+ 3. - After filling in the **Total Resources**, **Current Allocation**, and **Maximum Need** tables, click the **Calculate Available** button to calculate and populate the 'Available Resources' table:
     
     ![Main GUI](/images/image4.png "Main GUI")
 
- 4. - Press the Calculate Need button to calculate the Remaining Need matrix:
+ 4. - Click the **Calculate Need** button to calculate and display the **Remaining Need** table:
     
     ![Main GUI](/images/image5.png "Main GUI")
 
- 5. - Choose the Process that you want to request the Resources for, then input the amount of resources you want to request in the table. After that press the Request Resources button:
+ 5. - To request resources for a process, follow these steps:
+        a. Select the process for which you want to request resources from the table.<br />
+        b. Enter the amount of resources you wish to request for the selected process in the corresponding table cell.<br />
+        c. Click the **Request Resources** button to initiate the resource request.<br />
 
     ![Main GUI](/images/image6.png "Main GUI")
     
- 6. - A new window will appear with the newly updated tables. Press the Check Request button to check if the sequence is safe:
+ 6. - After clicking the 'Request Resources' button, a new window will open, displaying the updated tables. To verify the safety of the resource allocation sequence, click the **Check Request** button:
 
     ![Results GUI](/images/image7.png "Main GUI")
 
- 7. - If the Sequence is safe, then a message will appear with the safe sequence:
+ 7. - If the sequence is determined to be safe, a message will appear displaying the safe sequence:
 
     ![Results GUI](/images/image8.png "Main GUI")
 
