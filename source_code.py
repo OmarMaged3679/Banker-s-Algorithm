@@ -1,9 +1,10 @@
+import time
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("Banker's Algorithm")
+        MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1459, 1028)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -621,6 +622,12 @@ class Ui_MainWindow(object):
     def calcSafeSeq(self):
 
         try:
+
+            # set new available table values
+            for i in range(self.resources):
+                self.ui.newAvailTableWidget.setItem(
+                    0, i, QtWidgets.QTableWidgetItem(str(int(self.availTableWidget.item(0, i).text()) - int(self.reqTableWidget.item(0, i).text()))))
+
             # get new need table values
             need = []
             for i in range(self.processes):
@@ -682,16 +689,6 @@ class Ui_MainWindow(object):
                     int(availTableWidget.item(0, i).text()))
 
             # calculate safe sequence and output the available table after each iteration
-            # show error message if safe sequence does not exist
-            # show info message if safe sequence exists
-
-            # Check if the request can be fulfilled by comparing it with the Available resources:
-            if any(self.reqTableWidget.item(0, i).text() > availTableWidget.item(0, i).text() for i in range(self.resources)):
-                QtWidgets.QMessageBox.warning(
-                    self.centralwidget, "Result", "Request Denied, since it exceeds the Available resources")
-                self.ui.outputTextEdit.append(
-                    "Request Denied, Deadlock Occurs")
-                return
 
             # Check if the request can be fulfilled by comparing it with the Need resources:
             if any(self.reqTableWidget.item(0, i).text() > needTableWidget.item(0, i).text() for i in range(self.resources)):
@@ -701,7 +698,13 @@ class Ui_MainWindow(object):
                     "Request Denied, Deadlock Occurs")
                 return
 
-            # if there is no safe sequence, return "No safe sequence exists"
+            # Check if the need table in the new window contains any negative values:
+            if any(int(needTableWidget.item(i, j).text()) < 0 for i in range(self.processes) for j in range(self.resources)):
+                QtWidgets.QMessageBox.warning(
+                    self.centralwidget, "Result", "Request Denied, since it exceeds the Need resources")
+                self.ui.outputTextEdit.append(
+                    "Request Denied, Deadlock Occurs")
+                return
 
             safeSeq = []
             work = available.copy()
@@ -720,10 +723,19 @@ class Ui_MainWindow(object):
                             self.ui.outputTextEdit.append(
                                 f"Available after P{i + 1} is executed: {work}")
 
+                            # put the work list in the available table
+                            for j in range(self.resources):
+                                availTableWidget.setItem(
+                                    0, j, QtWidgets.QTableWidgetItem(str(work[j])))
+                            QtWidgets.QApplication.processEvents()
+                            time.sleep(1)
+
             if len(safeSeq) == self.processes:
+                # show message box with the safe sequence and output the safe sequence
                 QtWidgets.QMessageBox.information(
-                    self.centralwidget, "Result", "Request Granted, since it is safe")
-                return str(safeSeq)
+                    self.ui.centralwidget, "Result", "Request Granted. " + "Safe Sequence:  " + " -> ".join("P" + str(i) for i in safeSeq))
+                # return the safe sequence as a string with the process numbers and the word P before each number and a -> after each process number
+                return "Safe Sequence: " + " -> ".join("P" + str(i) for i in safeSeq)
             else:
                 return "Deadlock Occurs"
 
@@ -775,22 +787,6 @@ class Ui_MainWindow(object):
 
         except Exception as e:
             print(f"Error: {e}")
-
-    # function to print the width and height of the tables using a button
-
-    def printTableSize(self):
-        print(
-            f"Allocation Table: {self.alocTableWidget.width()} x {self.alocTableWidget.height()}")
-        print(
-            f"Max Table: {self.maxTableWidget.width()} x {self.maxTableWidget.height()}")
-        print(
-            f"Available Table: {self.availTableWidget.width()} x {self.availTableWidget.height()}")
-        print(
-            f"Need Table: {self.needTableWidget.width()} x {self.needTableWidget.height()}")
-        print(
-            f"Request Table: {self.reqTableWidget.width()} x {self.reqTableWidget.height()}")
-        print(
-            f"Resource Table: {self.resTableWidget.width()} x {self.resTableWidget.height()}")
 
     # function to load the input fields and tables with values i have already set
 
@@ -891,7 +887,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate(
+            "MainWindow", "Banker's Algorithm GUI"))
         self.titleLabel.setText(_translate(
             "MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:600; font-style:italic;\">Banker\'s Algorithm</span></p></body></html>"))
         self.processLabel.setText(_translate(
@@ -1087,7 +1084,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Results"))
         self.newAllocationLabel_2.setText(_translate(
             "MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:9pt; font-weight:600; text-decoration: underline;\">New Current Allocation:</span></p></body></html>"))
         self.newNeededLabel.setText(_translate(
