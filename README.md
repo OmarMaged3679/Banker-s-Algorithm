@@ -32,7 +32,7 @@ Follow these steps:
 2. - Run the following code in the terminal:
 
       ```shell
-         python source_code.py
+      python source_code.py
       ```
       
    - The following window will appear:
