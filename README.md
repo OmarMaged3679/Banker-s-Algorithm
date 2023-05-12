@@ -1,10 +1,6 @@
-## Banker's-Algorithm
+## Banker's-Algorithm GUI
 
-The Banker's Algorithm is a resource allocation and deadlock avoidance algorithm used in operating systems. This repository provides an implementation of the Banker's Algorithm in [programming language], allowing you to understand and simulate how the algorithm works.
-
-## Overview
-
-The Banker's Algorithm is designed to prevent deadlock in systems that allocate resources to multiple processes. It ensures that resources are allocated in a safe and deadlock-free manner by analyzing the current state of the system and the resource requests made by processes.
+The Banker's Algorithm is a resource allocation and deadlock avoidance algorithm used in operating systems. It ensures that resources are allocated in a safe and deadlock-free manner by analyzing the current state of the system and the resource requests made by processes. This project provides a graphical user interface (GUI) implementation of the Banker's Algorithm using Python. The GUI allows users to interact with the algorithm visually and provides an intuitive way to input data, run simulations, and observe the results. Please refer to the [Installation](#installation) section for instructions on how to set up the environment and install the necessary dependencies. Once the installation is complete, you can run the program and start using the Banker's Algorithm GUI.
 
 ## Requirements
 
