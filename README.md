@@ -19,7 +19,7 @@ Follow these steps:
 
 2. Clone this repository to your local machine or download and extract the ZIP file.
 
-3- To install the required library, run the following command in the terminal:
+3. To install the required library, run the following command in the terminal:
 
   ```shell
   pip install pyqt5
