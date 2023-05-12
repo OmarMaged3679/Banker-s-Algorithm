@@ -551,7 +551,6 @@ class Ui_MainWindow(object):
     def openNewWindow(self):
 
         try:
-
             # check if spinbox value is not 0
             if self.reqSpinBox.value() == 0:
                 QtWidgets.QMessageBox.warning(
